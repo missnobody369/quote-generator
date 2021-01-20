@@ -1,0 +1,10 @@
+html{
+    box-sizing: border-box;
+    /* anytime you add padding to any element the padding will stretch the page */
+    /* prevents padding to add extra width or height in the page */
+}
+
+body {
+    margin: 0; /* 0 on all sides top, right, bottom and left */
+    min-height: 100vh; /* vh-vieport height full height of the entire window/screen */
+}
