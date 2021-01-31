@@ -8,9 +8,25 @@ const quoteText = document.getElementById('quote'); //id quote html
 const authorText = document.getElementById('author'); //id author html
 const twitterBtn = document.getElementById('twitter'); //id twitter html
 const newQuoteBtn = document.getElementById('new-quote'); //id getting new quote html
+// for loader
+const loader = document.getElementById('loader');
+//show loading
+function loading() {
+    loader.hidden = false; //show loader
+    quoteContainer.hidden = true; //hide quote container
+}
+//hide loader and bring back container
+function complete() {
+    if(! loader.hidden) {
+        quoteContainer.hidden = false;
+        loader.hidden = true;
+    }
+}
 
 // function to be declared
+// get quote from API
 async function getQuote() {
+    loading(); //start loading quote
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
     // design for errors
@@ -36,6 +52,8 @@ async function getQuote() {
         }
         //data we get from the api
         quoteText.innerText = data.quoteText;
+        //stop loader, show quote
+        complete();
     }catch (error) {
         getQuote();
         // console.log('Whoops, No Quote!', error); testing view error
